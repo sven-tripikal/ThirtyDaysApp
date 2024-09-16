@@ -2,6 +2,9 @@
 <!-- app name -->
     <string name="app_name">ThirtyDaysApp</string>
 
+<!-- day of month text -->
+    <string name="day_text">Day %1$s:</string>
+
 <!-- motivational titles/descriptions/references    -->
     <string name="creative_title">Be Creative</string>
     <string name="creative_desc">Incorporate some creativity into your day. It can be anything, even that new recipe you haven\'t tried yet.</string>

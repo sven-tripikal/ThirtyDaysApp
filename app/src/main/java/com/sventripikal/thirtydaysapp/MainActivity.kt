@@ -3,9 +3,10 @@ package com.sventripikal.thirtydaysapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,19 +14,23 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.sventripikal.thirtydaysapp.data.MotivationalData
 import com.sventripikal.thirtydaysapp.model.MotivationalIdea
 import com.sventripikal.thirtydaysapp.ui.theme.ThirtyDaysAppTheme
@@ -34,7 +39,6 @@ import com.sventripikal.thirtydaysapp.ui.theme.Typography
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             ThirtyDaysAppTheme {
                 ThirtyDayApp()
@@ -48,27 +52,50 @@ class MainActivity : ComponentActivity() {
  *  Main app composable
  */
 @Composable
-fun ThirtyDayApp() { }
+fun ThirtyDayApp() {
+    Surface {   // add color to background
+
+        //  convert list to mutable list
+        val ideasList = MotivationalData.listOfIdeas.toMutableList()
+
+        //  reorder list
+        ideasList.shuffle()
+
+        LazyColumn( // organize items in a column
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.ten_dp)), // vertical spacing between items
+            contentPadding = PaddingValues(dimensionResource(R.dimen.ten_dp)) // spacing around entire content column
+        ) {
+            items(ideasList) { idea ->
+
+                val dayOfMonth = (ideasList.indexOf(idea) + 1)  // item index integer value
+
+                MotivationalItem(dayOfMonth, idea)  // card composable
+            }
+        }
+    }
+}
 
 
 /**
  *  Card composable applied to idea collection items
  *
+ *  @param dayOfMonth collection item index value
  *  @param motivationalIdea data class model containing information
  *  @param modifier modifier values applied to composable
  */
 @Composable
 fun MotivationalItem(
+    dayOfMonth: Int,
     motivationalIdea: MotivationalIdea,
     modifier: Modifier = Modifier
 ) {
-//  string value of collection item index   |   TO-DO: randomize list order
-    val dayOfMonth = (MotivationalData.listOfIdeas.indexOf(motivationalIdea) + 1).toString()
-
     Card(
-        elevation = CardDefaults.elevatedCardElevation(2.dp),   // add slight shadowing
+        elevation = CardDefaults.elevatedCardElevation(dimensionResource(R.dimen.two_dp)),   // slight shadowing
         modifier = modifier
-            .size(width = 500.dp, height = 400.dp)  // card dimensions
+            .size(  // card dimensions
+                width = dimensionResource(R.dimen.five_hundred_dp),
+                height = dimensionResource(R.dimen.four_hundred_dp)
+            )
     ) {
         Column(
             modifier = Modifier.fillMaxSize()   // use entire card space
@@ -100,8 +127,8 @@ fun CardImage(
             .fillMaxSize()  // fill entire upper-half card space
             .clip(
                 RoundedCornerShape(
-                    bottomStart = 12.dp,    // round image lower-left corner
-                    bottomEnd = 12.dp   // round image lower-right corner
+                    bottomStart = dimensionResource(R.dimen.twelve_dp),    // round image lower-left corner
+                    bottomEnd = dimensionResource(R.dimen.twelve_dp)   // round image lower-right corner
                 )
             )
     )
@@ -111,29 +138,30 @@ fun CardImage(
 /**
  *  Card header and idea descriptors composable
  *
- *  @param dayOfMonth string value of collection item index
+ *  @param dayOfMonth collection item index value
  *  @param motivationalIdea data class model containing information
  *  @param modifier modifier values applied to composable
  */
 @Composable
 private fun CardInformation(
-    dayOfMonth: String,
+    dayOfMonth: Int,
     motivationalIdea: MotivationalIdea,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()  // fill entire lower-half card space
-            .padding(20.dp) // spacing around column contents
+            .padding(dimensionResource(R.dimen.twenty_dp)) // spacing around column contents
 
     ) {
         CardHeadline(dayOfMonth, motivationalIdea)  // card headline composable
 
-        Spacer(Modifier.height(10.dp))  // vertical spacing between composables
+        Spacer(Modifier.height(dimensionResource(R.dimen.ten_dp)))  // vertical spacing between composables
 
         Text(
             text = stringResource(motivationalIdea.description),    // idea description
-            style = Typography.bodyLarge    // 16sp font size
+            style = Typography.bodyLarge,    // 16sp font size
+            overflow = TextOverflow.Visible // display all text
         )
 
         Spacer(Modifier.weight(1f))     // fill all space between prior/next composables
@@ -141,6 +169,7 @@ private fun CardInformation(
         Text(
             text = stringResource(motivationalIdea.reference),  // image reference
             style = Typography.labelSmall,  // 11sp font size
+            overflow = TextOverflow.Visible, // display all text
             modifier = Modifier.align(Alignment.End)    // align text composable to right
         )
     }
@@ -150,35 +179,45 @@ private fun CardInformation(
 /**
  *  Day of month and idea title composable
  *
- *  @param dayOfMonth string value of collection item index
+ *  @param dayOfMonth collection item index value
  *  @param motivationalIdea data class model containing information
  */
 @Composable
 private fun CardHeadline(
-    dayOfMonth: String,
+    dayOfMonth: Int,
     motivationalIdea: MotivationalIdea
 ) {
     Row {
         Text(
-            text = "Day $dayOfMonth:",
-            style = Typography.headlineMedium   // 20sp font size
+            text = stringResource(R.string.day_text, dayOfMonth),   // day of month text
+            style = Typography.headlineMedium,   // 20sp font size
+            overflow = TextOverflow.Visible // display all text
         )
 
-        Spacer(modifier = Modifier.width(10.dp))    // horizontal spacing between composables
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.ten_dp))) // horizontal spacing between composables
 
         Text(
             text = stringResource(motivationalIdea.title),  // idea title
             style = Typography.headlineMedium,  // 20sp font size
+            overflow = TextOverflow.Visible // display all text
         )
     }
 }
 
 
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ThirtyDayAppPreview() {
+    ThirtyDaysAppTheme(darkTheme = true) {
+        ThirtyDayApp()
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun MotivationalItemLightPreview() {
     ThirtyDaysAppTheme(darkTheme = false) {
-        MotivationalItem(MotivationalData.listOfIdeas.first())
+        MotivationalItem(1, MotivationalData.listOfIdeas.first())
     }
 }
 
@@ -186,6 +225,6 @@ fun MotivationalItemLightPreview() {
 @Composable
 fun MotivationalItemDarkPreview() {
     ThirtyDaysAppTheme(darkTheme = true) {
-        MotivationalItem(MotivationalData.listOfIdeas.first())
+        MotivationalItem(1, MotivationalData.listOfIdeas.first())
     }
 }
