@@ -1,2 +1,4 @@
 # ThirtyDaysApp
- An app that displays a list of self-positive ideas. Part of the Google Android Basics with Compose course.
+An app that displays a 30-day list of motivational ideas.\
+Part of the Google Android Basics with Compose course:\
+https://developer.android.com/codelabs/basic-android-kotlin-compose-30-days

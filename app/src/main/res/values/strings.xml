@@ -1,3 +1,97 @@
 <resources>
+<!-- app name -->
     <string name="app_name">ThirtyDaysApp</string>
+
+<!-- motivational titles/descriptions/references    -->
+    <string name="creative_title">Be Creative</string>
+    <string name="creative_desc">Incorporate some creativity into your day. It can be anything, even that new recipe you haven\'t tried yet.</string>
+    <string name="creative_ref">Photo by <a href="https://unsplash.com/@rhondak?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">RhondaK Native Florida Folk Artist</a> on <a href="https://unsplash.com/photos/assorted-color-paintbrushes-_Yc7OtfFn-0?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></string>
+
+    <string name="mindful_title">Be Mindful</string>
+    <string name="mindful_desc">Reflect on something you did today or a prior event. How did that action make you feel? Make improvements accordingly.</string>
+
+    <string name="respectful_title">Be Respectful</string>
+    <string name="respectful_desc">Make sure to mind what you say and do around others. Maybe don\'t talk with your mouth full for once!</string>
+
+    <string name="brave_title">Be Brave</string>
+    <string name="brave_desc">Some tasks may feel more daunting than others, but a little bravery can sometimes shape our entire future.</string>
+
+    <string name="helpful_title">Be Helpful</string>
+    <string name="helpful_desc">Hold a door open for a complete stranger. Just try not to be so helpful that you hold it for everyone, or you\'ll be there forever.</string>
+
+    <string name="smart_title">Be Smart</string>
+    <string name="smart_desc">You\'re no Einstein, but you have enough wits to determine what\'s healthy and unhealthy, so how about not eating a whole pizza by yourself?</string>
+
+    <string name="happy_title">Be Happy</string>
+    <string name="happy_desc">Things can always be worse. Just be happy that you may never actually know how much worse.</string>
+
+    <string name="funny_title">Be Funny</string>
+    <string name="funny_desc">Okay, so you\'re not a natural-born comedian, but you can spend a little time watching those who do it for a living.</string>
+
+    <string name="calm_title">Be Calm</string>
+    <string name="calm_desc">Keep it together. Things always get better. Breathe for a bit and things won\'t feel so heavy.</string>
+
+    <string name="yourself_title">Be Yourself</string>
+    <string name="yourself_desc">Nobody knows you like you know yourself, so maybe do something you actually like doing for today if you haven\'t done so already.</string>
+
+    <string name="good_title">Be Good</string>
+    <string name="good_desc">Try not to get yourself into trouble today. But if you do, hold yourself accountable and learn to be better next time.</string>
+
+    <string name="careful_title">Be Careful</string>
+    <string name="careful_desc">It never hurts to refrain from speeding past every yellow light, even if the traffic behind you is mad.</string>
+
+    <string name="different_title">Be Different</string>
+    <string name="different_desc">Someone once told me, \"You\'ll never really know what you truly enjoy in life if you continue living monotonously.\" I can\'t say I disagree.</string>
+
+    <string name="casual_title">Be Casual</string>
+    <string name="casual_desc">How about wearing something casual today and not dressing so rugged as you normally would, even though we all know those pajamas are comfortable.</string>
+
+    <string name="powerful_title">Be Powerful</string>
+    <string name="powerful_desc">This isn\'t the time to lift the heaviest weight possible in the gym and injure yourself, but maybe try challenging yourself a bit more in an ideal manner.</string>
+
+    <string name="special_title">Be Special</string>
+    <string name="special_desc">Try to stand out today. You don\'t have to do anything drastic, just aim to accomplish something that\'s important to you.</string>
+
+    <string name="strong_title">Be Strong</string>
+    <string name="strong_desc">It takes true strength to complete or begin tasks which require exceptional effort. Don\'t let them get the best of you. Focus on the outcome and execute.</string>
+
+    <string name="exciting_title">Be Exciting</string>
+    <string name="exciting_desc">Even if you aren\'t in a relationship, it wouldn\'t hurt to spice up your life once in a while. Maybe try revamping your wardrobe.</string>
+
+    <string name="responsible_title">Be Responsible</string>
+    <string name="responsible_desc">Everyone has daily obligations and deadlines. So, even if you don\'t like waking up or sleeping early, attempt to get ahead of today\'s/tomorrow\'s tasks.</string>
+
+    <string name="nice_title">Be Nice</string>
+    <string name="nice_desc">We all know most drivers have no consideration for other drivers. Let\'s try to be one of the few exceptions.</string>
+
+    <string name="selfless_title">Be Selfless</string>
+    <string name="selfless_desc">This is the one day that shouldn\'t be about you. How about asking your friend or partner what they would like to do and make it special for them?</string>
+
+    <string name="caring_title">Be Caring</string>
+    <string name="caring_desc">It doesn\'t hurt to care about things once in a while. How about aiming to accomplish that one task you always put off because you just didn\'t care for it.</string>
+
+    <string name="positive_title">Be Positive</string>
+    <string name="positive_desc">Everyone has that negative voice inside that makes things feel impossible. Let\'s shut it up for a moment and remind ourselves that we can and will overcome.</string>
+
+    <string name="capable_title">Be Capable</string>
+    <string name="capable_desc">There are times when life expects a lot from us. Sometimes it manifests as a job that no one else wants to do. Show initiative and bask in the glory of accomplishment.</string>
+
+    <string name="organized_title">Be Organized</string>
+    <string name="organized_desc">Even though your room looks like the aftermath of a hurricane strike, you\'ve brainwashed yourself into thinking you know where everything\'s at. Just clean it for once!</string>
+
+    <string name="sharp_title">Be Sharp</string>
+    <string name="sharp_desc">Sometimes knowing a little more than you did yesterday can help prepare you for future endeavors. Set aside at least 15 minutes to educate yourself on a topic of interest.</string>
+
+    <string name="thankful_title">Be Thankful</string>
+    <string name="thankful_desc">Life can be so fast at times that we forget to enjoy the fruits of our labor. Let\'s take this time to slow down and appreciate our accomplishments thus far.</string>
+
+    <string name="hygienic_title">Be Hygienic</string>
+    <string name="hygienic_desc">Even though the day was long and unforgiving, be sure to take a shower before bed. Don\'t tell yourself that you\'ll shower in the morning. You know you won\'t.</string>
+
+    <string name="determined_title">Be Determined</string>
+    <string name="determined_desc">Remind yourself of your overall goal in life. Whatever that may be. Avoid needless distractions and do not let it slip away. Take a picture of it and set it as your phone\'s wallpaper.</string>
+
+    <string name="free_title">Be Free</string>
+    <string name="free_desc">Your life is governed by you alone. You can either support or hinder your progress. Set realistic goals and strive for the life that alludes you, regardless of the effort required to obtain it.</string>
+
 </resources>
