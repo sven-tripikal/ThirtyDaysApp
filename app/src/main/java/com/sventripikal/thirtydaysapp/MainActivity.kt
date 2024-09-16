@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 /**
  *  Main app composable
  */
@@ -175,7 +176,15 @@ private fun CardHeadline(
 
 @Preview(showBackground = true)
 @Composable
-fun MotivationalItemPreview() {
+fun MotivationalItemLightPreview() {
+    ThirtyDaysAppTheme(darkTheme = false) {
+        MotivationalItem(MotivationalData.listOfIdeas.first())
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MotivationalItemDarkPreview() {
     ThirtyDaysAppTheme(darkTheme = true) {
         MotivationalItem(MotivationalData.listOfIdeas.first())
     }
