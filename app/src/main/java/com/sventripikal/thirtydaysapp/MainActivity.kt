@@ -56,10 +56,13 @@ fun ThirtyDayApp() {
     Surface {   // add color to background
 
         //  convert list to mutable list
-        val ideasList = MotivationalData.listOfIdeas.toMutableList()
+        val mutableList = MotivationalData.listOfIdeas.toMutableList()
 
         //  reorder list
-        ideasList.shuffle()
+        mutableList.shuffle()
+
+        // convert mutable list back to immutable list
+        val ideasList = mutableList.toList()
 
         LazyColumn( // organize items in a column
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.ten_dp)), // vertical spacing between items

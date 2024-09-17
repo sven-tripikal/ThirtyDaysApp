@@ -7,7 +7,7 @@ import com.sventripikal.thirtydaysapp.model.MotivationalIdea
 /**
  *  Object containing values
  *
- *  @property listOfIdeas an immutable collection of ideas
+ *  @property listOfIdeas an immutable collection of motivational ideas
  */
 object MotivationalData {
 
