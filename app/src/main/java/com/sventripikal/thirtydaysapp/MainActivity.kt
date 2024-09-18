@@ -19,12 +19,20 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -51,9 +59,14 @@ class MainActivity : ComponentActivity() {
 /**
  *  Main app composable
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThirtyDayApp() {
-    Surface {   // add color to background
+    // add color to entire background
+    Surface(modifier = Modifier.fillMaxSize()) {
+
+        // get scroll behavior for topAppBar | collapses when scrolling
+        val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 
         //  convert list to mutable list
         val mutableList = MotivationalData.listOfIdeas.toMutableList()
@@ -64,18 +77,55 @@ fun ThirtyDayApp() {
         // convert mutable list back to immutable list
         val ideasList = mutableList.toList()
 
-        LazyColumn( // organize items in a column
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.ten_dp)), // vertical spacing between items
-            contentPadding = PaddingValues(dimensionResource(R.dimen.ten_dp)) // spacing around entire content column
-        ) {
-            items(ideasList) { idea ->
+        Scaffold(   // topAppBar composable displaying topic title
+            topBar = { TitleBar(scrollBehavior) },
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) // collapsing behavior when scrolling
 
-                val dayOfMonth = (ideasList.indexOf(idea) + 1)  // item index integer value
+        ) { paddingValues ->
 
-                MotivationalItem(dayOfMonth, idea)  // card composable
+            LazyColumn( // organize items in a column
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.ten_dp)), // vertical spacing between items
+                horizontalAlignment = Alignment.CenterHorizontally, // center content horizontally
+                contentPadding = PaddingValues(dimensionResource(R.dimen.ten_dp)), // spacing around entire content column
+                modifier = Modifier
+                    .fillMaxSize()  // fill screen to add scrolling to surface
+                    .padding(paddingValues) // outer content padding
+            ) {
+                items(ideasList) { idea ->
+
+                    val dayOfMonth = (ideasList.indexOf(idea).inc())  // item index integer value + 1
+
+                    MotivationalItem(dayOfMonth, idea)  // card composable
+                }
             }
         }
+
     }
+}
+
+
+/**
+ *  TopAppBar composable displaying topic title
+ *
+ *  @param scrollBehavior collapses topAppBar while scrolling
+ *  @param modifier modifier values applied to composable
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TitleBar(
+    scrollBehavior: TopAppBarScrollBehavior,
+    modifier: Modifier = Modifier
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = stringResource(R.string._30_days_of_being_text),
+                style = MaterialTheme.typography.headlineMedium
+            )
+        },
+        scrollBehavior = scrollBehavior,
+        modifier = modifier
+    )
 }
 
 

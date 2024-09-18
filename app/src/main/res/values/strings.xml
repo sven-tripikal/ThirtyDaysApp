@@ -2,7 +2,10 @@
 <!-- app name -->
     <string name="app_name">ThirtyDaysApp</string>
 
-<!-- day of month text -->
+<!-- title bar -->
+    <string name="_30_days_of_being_text">30 Days Of Being</string>
+
+<!-- day of month -->
     <string name="day_text">Day %1$s:</string>
 
 <!-- motivational titles/descriptions/references    -->
